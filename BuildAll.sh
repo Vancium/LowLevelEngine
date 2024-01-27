@@ -1,6 +1,6 @@
 
 
-cmake -S . -B bin -G "Unix Makefiles"
+cmake -S . -B bin -D CMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" 
 cd bin
 
 make
