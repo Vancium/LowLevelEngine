@@ -33,6 +33,7 @@ LLAPI void shutdown_logging();
 LLAPI void log_output(log_level level, const char* msg, ...);
 
 
+
 //Logging macros
 
 // These are always enabled

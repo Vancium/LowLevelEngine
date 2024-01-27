@@ -6,6 +6,12 @@
 #include <string.h>
 #include <stdarg.h>
 
+#include "../Assert/assertions.h"
+
+
+void report_assertion_failure(const char* expression, const char* message, const char* file, i32 line) {
+    log_output(LOG_LEVEL_FATAL, "Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
+}
 b8 init_logging();
 
 void shutdown_logging();
