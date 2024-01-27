@@ -4,6 +4,8 @@ set(
     LLE_SOURCE_FILES
     src/core/Test/test.c
     src/core/Test/test.h
+    src/core/Log/log.c
+    src/core/Log/log.h
     src/defines.h
 )
 
