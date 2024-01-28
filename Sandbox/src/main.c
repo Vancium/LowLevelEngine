@@ -12,5 +12,4 @@ int main(void) {
     LLE_DEBUG("Debug: %f", 3.14);
     LLE_INFO("Info: %f", 3.14);
     LLE_TRACE("Trace: %f", 3.14);
-
 }

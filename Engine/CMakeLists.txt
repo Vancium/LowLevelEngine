@@ -14,9 +14,9 @@ set(
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_compile_definitions(-DLLE_RELEASE)
+    add_compile_definitions(LLE_RELEASE)
 elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_definitions(-DLLE_DEBUG)
+    add_compile_definitions(LLE_DEBUG)
 endif()
 
 add_library(LLE_Engine SHARED ${LLE_SOURCE_FILES})
