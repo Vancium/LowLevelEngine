@@ -52,6 +52,12 @@ STATIC_ASSERT(sizeof(f64) == 8, "f64 should be 8 bytes long");
 #define TRUE 1
 #define FALSE 0
 
+//Platform Detection
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
+    #define LLPLATFORM_WINDOWS 1
+#endif
+
 #ifdef LLE_EXPORT
 // Exports
 #ifdef _MSC_VER

@@ -6,7 +6,7 @@ typedef struct platform_state{
 } platform_state;
 
 b8 platform_create(
-    platform_state* state,
+    platform_state* plat_state,
     const char* name, 
     i32 x,
     i32 y,
@@ -14,7 +14,8 @@ b8 platform_create(
     i32 width
 );
 
-void platform_destroy(platform_state* platform_state);
+void platform_destroy(platform_state* plat_state);
+ 
 
 //Mostly to handle printing to console on Windows
 b8 platfrom_pump_messages(platform_state* state);
@@ -32,3 +33,6 @@ void platform_console_write_error(const char* message, u8 color);
 f64 platform_get_absolute_time();
 
 void platform_sleep(u64 ms);
+
+
+

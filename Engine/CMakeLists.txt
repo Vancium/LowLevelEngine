@@ -2,10 +2,14 @@
 
 set(
     LLE_SOURCE_FILES
+    src/defines.h
     src/core/Log/log.c
     src/core/Log/log.h
     src/core/Assert/assertions.h
-    src/defines.h
+    src/platform/platform.h
+    src/platform/platform_win32.c
+
+
     
 )
 

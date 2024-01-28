@@ -1,8 +1,6 @@
 
-#include <stdio.h>
-
 #include "LLE_Interface.h"
-#include "core/Assert/assertions.h"
+#include "platform/platform.h"
 
 int main(void) {
 
@@ -12,4 +10,5 @@ int main(void) {
     LLE_DEBUG("Debug: %f", 3.14);
     LLE_INFO("Info: %f", 3.14);
     LLE_TRACE("Trace: %f", 3.14);
+
 }
