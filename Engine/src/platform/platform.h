@@ -5,7 +5,7 @@ typedef struct platform_state{
     void* internal_state;
 } platform_state;
 
-b8 platform_create(
+LLAPI b8 platform_create(
     platform_state* plat_state,
     const char* name, 
     i32 x,
@@ -14,11 +14,11 @@ b8 platform_create(
     i32 width
 );
 
-void platform_destroy(platform_state* plat_state);
+LLAPI void platform_destroy(platform_state* plat_state);
  
 
 //Mostly to handle printing to console on Windows
-b8 platfrom_pump_messages(platform_state* state);
+LLAPI b8 platform_pump_messages(platform_state* state);
 
 
 void* platform_allocate(u64 size, b8 aligned);

@@ -23,11 +23,22 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(LLE_DEBUG)
 endif()
 
+if(WIN32)
+    # find window specifc libraries
+    find_library(USER32 user32)
+    message("WINDOWS_____________________")
+endif(WIN32)
+
 add_library(LLE_Engine SHARED ${LLE_SOURCE_FILES})
+
 
 add_compile_definitions(LLE_EXPORT=1)
 
 target_include_directories(LLE_Engine PUBLIC "${CMAKE_CURRENT_LIST_DIR}/src")
+
+if(WIN32)
+    target_link_libraries(LLE_Engine PUBLIC USER32)
+endif(WIN32)
 
 
 

@@ -7,6 +7,7 @@
 #include <stdarg.h>
 
 #include "../Assert/assertions.h"
+#include "platform/platform.h"
 
 
 void report_assertion_failure(const char* expression, const char* message, const char* file, i32 line) {
@@ -18,6 +19,7 @@ void shutdown_logging();
 
 void log_output(log_level level, const char *msg, ...) {
     const char* log_level_strings[6] = {"[FATAL]: ","[ERROR]: ", "[WARN]: ","[DEBUG]: ", "[INFO]: ","[TRACE]: "};
+    b8 is_error = level < LOG_LEVEL_WARN;
 
     const u16 MAX_MESSAGE_LENGTH = 32000;
 
@@ -32,6 +34,11 @@ void log_output(log_level level, const char *msg, ...) {
 
     sprintf(out_message, "%s%s\n", log_level_strings[level], temp_message);
 
-    printf("%s", out_message);
+    if(is_error) {
+        platform_console_write_error(out_message, level);
+    } else {
+        platform_console_write(out_message, level);
+    }
+
     
 }

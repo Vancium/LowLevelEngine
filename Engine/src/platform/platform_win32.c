@@ -4,10 +4,10 @@
 #if LLPLATFORM_WINDOWS
 
     #include <stdio.h>
-    #include "core/Log/log.h"
+    #include "../core/Log/log.h"
     #include <windows.h>
     #include <windowsx.h>
-    #include <memory.h>
+    #include <stdlib.h>
 
     typedef struct windows_layer_state {
         HINSTANCE h_instance; //Instance handle
@@ -38,19 +38,19 @@
         HICON icon = LoadIcon(curr_state->h_instance, IDI_APPLICATION);
         WNDCLASSA window_class;
         memset(&window_class, 0, sizeof(window_class));
-        window_class.style = CS_DBCLICKS; // Recieve double click information
+        window_class.style = CS_DBLCLKS; // Recieve double click information
         window_class.lpfnWndProc = win32_process_message; //pointer to window procedure, handles events within the system
         window_class.cbClsExtra = 0; // Number of extra bytes to allocate following the window class-structure
         window_class.cbWndExtra = 0; // Number of extra bytes to allocate following the window instance
         window_class.hInstance = curr_state->h_instance; // 
-        window_class.icon = icon;
+        window_class.hIcon = icon;
         window_class.hCursor = LoadCursor(NULL, IDC_ARROW); //Manage cursor manually
         window_class.hbrBackground = NULL; // Transparent background and allows current application to paint to background
         window_class.lpszClassName = "lle_window_class";
 
         // Registar window class
         if(!RegisterClassA(&window_class)) {
-            MessageBoxA(0, "Window registration failed", "Error", MB_ICONEXCLEMATION | MB_OK);
+            MessageBoxA(0, "Window registration failed", "Error", MB_ICONEXCLAMATION | MB_OK);
             return FALSE;
         }
         
@@ -77,7 +77,7 @@
 
         // Obtain the size of the border
         RECT border_rect = { 0, 0, 0, 0 };
-        AdjustWindowRect(&border_rect, window_style, 0, window_ex_style);
+        AdjustWindowRectEx(&border_rect, window_style, 0, window_ex_style);
 
         // Border rectangle is negative and client window should be smaller than window 'window'
         window_x += border_rect.right;
@@ -105,7 +105,7 @@
 
         if(window_handle == 0) {
             MessageBoxA(NULL, "Window creation failed!", "Error!", MB_ICONEXCLAMATION | MB_OK);
-            LFATAL("Window creation failed!");
+            LLE_FATAL("Window creation failed!");
             return FALSE;
         } else {
             curr_state->h_windowHandle = window_handle; 
@@ -130,14 +130,14 @@
         windows_layer_state* curr_state = (windows_layer_state*)plat_state->internal_state;
         
         if(curr_state->h_windowHandle) {
-            DestroyWindow(curr_state->h_widowHandle);
+            DestroyWindow(curr_state->h_windowHandle);
             curr_state->h_windowHandle = 0;
         }
     }
      
 
     //Mostly to handle printing to console on Windows, called from main application loop
-    b8 platfrom_pump_messages(platform_state* state) {
+    b8 platform_pump_messages(platform_state* state) {
 
         /*
         *   Windows message system is a stack, if stack is not empty remove item from stack and display
@@ -176,7 +176,7 @@
         OutputDebugStringA(message); // Windows specific output stream
         u64 message_length = sizeof(message);
         LPDWORD number_written = 0;
-        WriteConsoleA(console_handle, message, (DWORD)length, number_written, 0);
+        WriteConsoleA(console_handle, message, (DWORD)message_length, number_written, 0);
         
     }
 
@@ -188,7 +188,7 @@
         OutputDebugStringA(message); // Windows specific output stream
         u64 message_length = sizeof(message);
         LPDWORD number_written = 0;
-        WriteConsoleA(console_handle, message, (DWORD)length, number_written, 0);
+        WriteConsoleA(console_handle, message, (DWORD)message_length, number_written, 0);
 
     }
 
