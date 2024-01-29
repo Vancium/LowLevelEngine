@@ -1,16 +1,19 @@
 
 #include "LLE_Interface.h"
-#include "platform/platform.h"
+#include "core/Log/log.h"
+#include "core/Application/application.h"
 
 int main(void) {
 
-    platform_state state;
-    if(platform_create(&state, "LowLevelEngine Sandbox", 100, 100, 1280, 720)) {
-        while(TRUE) {
-            platform_pump_messages(&state);
-        }
-    }
-    platform_destroy(&state);
+    application_config config;
+    config.name = "Low Level Engine";
+    config.start_x_pos = 100;
+    config.start_y_pos = 100;
+    config.start_width = 1280;
+    config.start_height = 720;
+
+    application_create(&config);
+    application_run();
 
     return 0;
 }

@@ -13,9 +13,9 @@
 void report_assertion_failure(const char* expression, const char* message, const char* file, i32 line) {
     log_output(LOG_LEVEL_FATAL, "Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
 }
-b8 init_logging();
+b8 init_logging() { return TRUE; };
 
-void shutdown_logging();
+void shutdown_logging() {};
 
 void log_output(log_level level, const char *msg, ...) {
     const char* log_level_strings[6] = {"[FATAL]: ","[ERROR]: ", "[WARN]: ","[DEBUG]: ", "[INFO]: ","[TRACE]: "};
