@@ -2,7 +2,10 @@
 
 #include "defines.h"
 
-typedef struct applicatoin_config {
+struct game;
+
+
+typedef struct application_config {
     i16 start_x_pos;
     i16 start_y_pos;
     i16 start_width;
@@ -10,6 +13,7 @@ typedef struct applicatoin_config {
     char* name;
 } application_config;
 
-LLAPI b8 application_create(application_config* config);
+
+LLAPI b8 application_create(struct game* game_instance);
 
 LLAPI b8 application_run();

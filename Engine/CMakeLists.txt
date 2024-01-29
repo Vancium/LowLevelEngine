@@ -3,6 +3,7 @@
 set(
     LLE_SOURCE_FILES
     src/defines.h
+    src/game_types.h
     src/core/Log/log.c
     src/core/Log/log.h
     src/core/Assert/assertions.h
