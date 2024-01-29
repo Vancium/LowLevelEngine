@@ -18,7 +18,7 @@ LLAPI void platform_destroy(platform_state* plat_state);
  
 
 //Mostly to handle printing to console on Windows
-LLAPI b8 platform_pump_messages(platform_state* state);
+LLAPI b8 platform_pump_messages(platform_state* plat_state);
 
 
 void* platform_allocate(u64 size, b8 aligned);

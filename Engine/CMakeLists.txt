@@ -8,8 +8,7 @@ set(
     src/core/Assert/assertions.h
     src/platform/platform.h
     src/platform/platform_win32.c
-
-
+    src/platform/platform_linux.c
     
 )
 
@@ -26,8 +25,12 @@ endif()
 if(WIN32)
     # find window specifc libraries
     find_library(USER32 user32)
-    message("WINDOWS_____________________")
 endif(WIN32)
+
+if(LINUX)
+    message("Linux")
+    find_package(X11 REQUIRED)
+endif(LINUX)
 
 add_library(LLE_Engine SHARED ${LLE_SOURCE_FILES})
 
@@ -39,6 +42,10 @@ target_include_directories(LLE_Engine PUBLIC "${CMAKE_CURRENT_LIST_DIR}/src")
 if(WIN32)
     target_link_libraries(LLE_Engine PUBLIC USER32)
 endif(WIN32)
+
+if(LINUX)
+    target_link_libraries(LLE_Engine PUBLIC ${X11_LIBRARIES} -lX11-xcb)
+endif(LINUX)
 
 
 

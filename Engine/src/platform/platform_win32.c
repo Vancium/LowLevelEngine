@@ -137,7 +137,7 @@
      
 
     //Mostly to handle printing to console on Windows, called from main application loop
-    b8 platform_pump_messages(platform_state* state) {
+    b8 platform_pump_messages(platform_state* plat_state) {
 
         /*
         *   Windows message system is a stack, if stack is not empty remove item from stack and display
@@ -260,6 +260,7 @@
                 //b8 pressed = message == WM_LBUTTONDOWN || message == WM_RBUTTONDOWN || message == WM_MBUTTONDOWN;
                 // TODO handle input
             } break;
+            default: break;
         }
         return DefWindowProcA(window_handle, message, w_param, l_param);
     }

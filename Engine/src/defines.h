@@ -58,6 +58,11 @@ STATIC_ASSERT(sizeof(f64) == 8, "f64 should be 8 bytes long");
     #define LLPLATFORM_WINDOWS 1
 #endif
 
+#if defined(__linux__)
+    #define LLPLATFORM_LINUX 1
+#endif
+
+
 #ifdef LLE_EXPORT
 // Exports
 #ifdef _MSC_VER
