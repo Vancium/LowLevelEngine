@@ -1,5 +1,6 @@
 #include "application.h"
 #include "platform/platform.h"
+#include "core/LLE_Memory/lle_memory.h"
 #include "core/Log/log.h"
 #include "game_types.h"
 
@@ -30,14 +31,6 @@ b8 application_create(game* game_instance) {
     // Initialize subsytems
     init_logging(); //Logging capabilities
 
-    //TODO remove
-    LLE_FATAL("Fatal: %f", 3.14);
-    LLE_ERROR("Error: %f", 3.14);
-    LLE_WARN("Warn: %f", 3.14);
-    LLE_DEBUG("Debug: %f", 3.14);
-    LLE_INFO("Info: %f", 3.14);
-    LLE_TRACE("Trace: %f", 3.14);
-
     app_state.is_running = TRUE;
     app_state.is_suspended = FALSE;
 
@@ -65,6 +58,7 @@ b8 application_create(game* game_instance) {
 }
 
 b8 application_run() {
+    LLE_INFO(get_memory_usage_str());
     while(app_state.is_running) {
         if(!platform_pump_messages(&app_state.platform)) {
             app_state.is_running = FALSE;

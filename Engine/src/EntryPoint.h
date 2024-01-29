@@ -1,14 +1,19 @@
 #pragma once
 
 #include "core/Application/application.h"
+#include "core/LLE_Memory/lle_memory.h"
 #include "core/Log/log.h"
 #include "game_types.h"
+
+
 
 
 extern b8 create_game(game* out_game);
 
 
 int main(void) {
+
+    initialize_memory();
 
     game game_instance;
 
@@ -32,6 +37,8 @@ int main(void) {
         LLE_INFO("Application did not shutdown correctly");
         return 2;
     }
+
+    destroy_memory();
 
     return 0;
 }

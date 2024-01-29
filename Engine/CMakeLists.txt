@@ -9,6 +9,8 @@ set(
     src/core/Assert/assertions.h
     src/core/Application/application.h
     src/core/Application/application.c
+    src/core/LLE_Memory/lle_memory.h
+    src/core/LLE_Memory/lle_memory.c
     src/platform/platform.h
     src/platform/platform_win32.c
     src/platform/platform_linux.c
