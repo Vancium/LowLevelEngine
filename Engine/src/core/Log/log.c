@@ -32,7 +32,7 @@ void log_output(log_level level, const char *msg, ...) {
     vsnprintf(temp_message, MAX_MESSAGE_LENGTH, msg, arg_ptr);
     va_end(arg_ptr);
 
-    sprintf(out_message, "%s%s\n", log_level_strings[level], temp_message);
+    sprintf(out_message, "%s%s", log_level_strings[level], temp_message);
 
     if(is_error) {
         platform_console_write_error(out_message, level);
